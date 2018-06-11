@@ -66,6 +66,11 @@ class ChatRoom: NSObject {
     
     _ = data.withUnsafeBytes { outputStream.write($0, maxLength: data.count) }
   }
+  
+  func stopChatSession() {
+    inputStream.close()
+    outputStream.close()
+  }
 }
 
 extension ChatRoom: StreamDelegate {
@@ -77,6 +82,7 @@ extension ChatRoom: StreamDelegate {
       readAvailableBytes(stream: aStream as! InputStream)
     case Stream.Event.endEncountered:
       print("new message received")
+      stopChatSession()
     case Stream.Event.errorOccurred:
       print("error occurred")
     case Stream.Event.hasSpaceAvailable:
