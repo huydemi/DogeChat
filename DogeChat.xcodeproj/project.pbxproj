@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B6052C120CED87C0031F088 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6052C020CED87C0031F088 /* ChatRoom.swift */; };
 		AE28D6E51EC0AB9800E886B9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */; };
 		AE909BEB1EB54099009D9D95 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */; };
 		AE909BED1EB54B13009D9D95 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE909BEC1EB54B13009D9D95 /* Message.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B6052C020CED87C0031F088 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		AE28D6E41EC0AB9800E886B9 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AE909BEA1EB54099009D9D95 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		AE909BEC1EB54B13009D9D95 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				AEC6BF501EAF345A007CA6E5 /* ChatRoomViewController.swift */,
+				6B6052C020CED87C0031F088 /* ChatRoom.swift */,
 				AE909BF21EB6C34B009D9D95 /* Other Stuff */,
 				AEC6BF451EAF320E007CA6E5 /* Assets.xcassets */,
 				AEC6BF471EAF320E007CA6E5 /* LaunchScreen.storyboard */,
@@ -190,6 +193,7 @@
 				AEA5A1771EC3618C0041C7B4 /* Layouts.swift in Sources */,
 				AEC6BF511EAF345A007CA6E5 /* ChatRoomViewController.swift in Sources */,
 				AEA5A1791EC362150041C7B4 /* ChatRoomViewController+Table.swift in Sources */,
+				6B6052C120CED87C0031F088 /* ChatRoom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

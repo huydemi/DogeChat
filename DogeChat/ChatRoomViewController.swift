@@ -33,6 +33,7 @@ import UIKit
 class ChatRoomViewController: UIViewController {
   let tableView = UITableView()
   let messageInputBar = MessageInputView()
+  let chatRoom = ChatRoom()
   
   var messages = [Message]()
   
