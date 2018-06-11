@@ -60,6 +60,12 @@ class ChatRoom: NSObject {
     // write message to the output stream
     _ = data.withUnsafeBytes { outputStream.write($0, maxLength: data.count) }
   }
+  
+  func sendMessage(message: String) {
+    let data = "msg:\(message)".data(using: .ascii)!
+    
+    _ = data.withUnsafeBytes { outputStream.write($0, maxLength: data.count) }
+  }
 }
 
 extension ChatRoom: StreamDelegate {

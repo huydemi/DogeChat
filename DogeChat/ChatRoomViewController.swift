@@ -56,7 +56,7 @@ class ChatRoomViewController: UIViewController {
 //MARK - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
   func sendWasTapped(message: String) {
-    
+    chatRoom.sendMessage(message: message)
   }
 }
 
