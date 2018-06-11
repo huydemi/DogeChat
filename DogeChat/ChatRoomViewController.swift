@@ -42,6 +42,7 @@ class ChatRoomViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    chatRoom.delegate = self
     chatRoom.setupNetworkCommunication()
     chatRoom.joinChat(username: username)
   }
@@ -59,3 +60,9 @@ extension ChatRoomViewController: MessageInputDelegate {
   }
 }
 
+//MARK - Chat Room Delegate
+extension ChatRoomViewController: ChatRoomDelegate {
+  func receivedMessage(message: Message) {
+    insertNewMessageCell(message)
+  }
+}

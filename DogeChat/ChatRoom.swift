@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol ChatRoomDelegate: class {
+  func receivedMessage(message: Message)
+}
+
 class ChatRoom: NSObject {
+  
+  weak var delegate: ChatRoomDelegate?
+  
   // input stream to receive message
   // output stream to send messages
   var inputStream: InputStream!
@@ -93,7 +100,7 @@ extension ChatRoom: StreamDelegate {
       //Construct the Message object
       if let message = processedMessageString(buffer: buffer, length: numberOfBytesRead) {
         //Notify interested parties
-        
+        delegate?.receivedMessage(message: message)
       }
     }
   }
