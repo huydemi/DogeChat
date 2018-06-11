@@ -35,6 +35,8 @@ class ChatRoom: NSObject {
     inputStream = readStream!.takeRetainedValue()
     outputStream = writeStream!.takeRetainedValue()
     
+    inputStream.delegate = self
+    
     inputStream.schedule(in: .current, forMode: .commonModes)
     outputStream.schedule(in: .current, forMode: .commonModes)
     
@@ -50,5 +52,66 @@ class ChatRoom: NSObject {
     
     // write message to the output stream
     _ = data.withUnsafeBytes { outputStream.write($0, maxLength: data.count) }
+  }
+}
+
+extension ChatRoom: StreamDelegate {
+  
+  func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+    switch eventCode {
+    case Stream.Event.hasBytesAvailable:
+      print("new message received")
+      readAvailableBytes(stream: aStream as! InputStream)
+    case Stream.Event.endEncountered:
+      print("new message received")
+    case Stream.Event.errorOccurred:
+      print("error occurred")
+    case Stream.Event.hasSpaceAvailable:
+      print("has space available")
+    default:
+      print("some other event...")
+      break
+    }
+  }
+  
+  private func readAvailableBytes(stream: InputStream) {
+    // set up a buffer, into which can read the incoming bytes
+    let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxReadLength)
+    
+    // loop for as long as the input stream has bytes to be read
+    while stream.hasBytesAvailable {
+      // read bytes from the stream and put them into the buffer
+      let numberOfBytesRead = inputStream.read(buffer, maxLength: maxReadLength)
+      
+      // If returns a negative value, some error occurred
+      if numberOfBytesRead < 0 {
+        if let _ = stream.streamError {
+          break
+        }
+      }
+      
+      //Construct the Message object
+      if let message = processedMessageString(buffer: buffer, length: numberOfBytesRead) {
+        //Notify interested parties
+        
+      }
+    }
+  }
+  
+  private func processedMessageString(buffer: UnsafeMutablePointer<UInt8>,
+                                      length: Int) -> Message? {
+    // initialize a String using the buffer and length that's passed in
+    guard let stringArray = String(bytesNoCopy: buffer,
+                                   length: length,
+                                   encoding: .ascii,
+                                   freeWhenDone: true)?.components(separatedBy: ":"),
+      let name = stringArray.first,
+      let message = stringArray.last else {
+        return nil
+    }
+    // figure out if you or someone else sent the message based on the name
+    let messageSender:MessageSender = (name == self.username) ? .ourself : .someoneElse
+    // construct a Message with gathered parts and return it.
+    return Message(message: message, messageSender: messageSender, username: name)
   }
 }
