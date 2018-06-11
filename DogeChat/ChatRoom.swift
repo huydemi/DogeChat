@@ -41,4 +41,14 @@ class ChatRoom: NSObject {
     inputStream.open()
     outputStream.open()
   }
+  
+  func joinChat(username: String) {
+    // construct message using the simple chat room protocol
+    let data = "iam:\(username)".data(using: .ascii)!
+    // save off the name that gets passed in so can use it when sending chat messages later
+    self.username = username
+    
+    // write message to the output stream
+    _ = data.withUnsafeBytes { outputStream.write($0, maxLength: data.count) }
+  }
 }

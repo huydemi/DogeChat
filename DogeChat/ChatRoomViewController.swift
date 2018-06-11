@@ -43,6 +43,7 @@ class ChatRoomViewController: UIViewController {
     super.viewWillAppear(animated)
     
     chatRoom.setupNetworkCommunication()
+    chatRoom.joinChat(username: username)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
