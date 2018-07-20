@@ -8,6 +8,8 @@ In this Real-Time Communication with Streams Tutorial, you will learn:
 - Sending Messages
 - Cleaning Up After Yourself
 
+![walkthrough](https://koenig-media.raywenderlich.com/uploads/2017/05/loveGames.gif)
+
 ##### Getting Server Up and Running
 setup
 
